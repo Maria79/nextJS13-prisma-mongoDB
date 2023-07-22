@@ -10,14 +10,27 @@ export default function UserWork({ userData }) {
 	}
 
 	return (
-		<div className='border-b-zinc-700 border-b-2 mt-1 p-2 '>
-			<h2 className='underline underline-offset-2 py-3' onClick={handleOpen}>
+		<div className=' border-indigo-500/75 border-b-2 mt-1 p-2'>
+			<h2
+				className='underline underline-offset-2 py-3 cursor-pointer hover:font-bold'
+				onClick={handleOpen}
+			>
 				{' '}
 				Work Info:
 			</h2>
 			{show && (
 				<div>
 					<div className=' my-5'>
+						<div className='my-1'>
+							<label htmlFor='name'>University:</label>
+							<input
+								className='text-sm font-semibold py-1 px-2 w-1/2'
+								type='text'
+								name='name'
+								placeholder={userData.university}
+								disabled
+							/>
+						</div>
 						<div className='my-1'>
 							<label htmlFor='name'>Company Name:</label>
 							<input

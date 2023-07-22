@@ -10,8 +10,11 @@ export default function Profile({ userData }) {
 	}
 
 	return (
-		<div className='border-b-zinc-700 border-b-2 mt-1 p-2'>
-			<h2 className='underline underline-offset-2 py-3' onClick={handleOpen}>
+		<div className='border-indigo-500/75 border-b-2 mt-1 p-2 shadow'>
+			<h2
+				className='underline underline-offset-2 py-3 cursor-pointer hover:font-bold'
+				onClick={handleOpen}
+			>
 				Profile Details:
 			</h2>
 			{show && (

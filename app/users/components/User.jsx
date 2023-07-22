@@ -4,9 +4,11 @@ import UserInfo from './subcomponents/UserInfo';
 import UserAddress from './subcomponents/UserAddress';
 import Profile from './subcomponents/Profile';
 import UserWork from './subcomponents/UserWork';
+import UserPosts from './subcomponents/UserPosts';
 
 const User = ({ userId }) => {
 	const [userData, setUserData] = useState(null);
+	const [userPosts, setUserPosts] = useState([]);
 
 	useEffect(() => {
 		axios
@@ -16,6 +18,15 @@ const User = ({ userId }) => {
 			})
 			.catch((error) => {
 				console.error('Error fetching user data:', error);
+			});
+
+		axios
+			.get(`https://dummyjson.com/users/${userId}/posts`)
+			.then((response) => {
+				setUserPosts(response.data.posts);
+			})
+			.catch((error) => {
+				console.error('Error fetching user posts:', error);
 			});
 	}, [userId]);
 
@@ -46,13 +57,13 @@ const User = ({ userId }) => {
 	const birthDate = userData.birthDate;
 	const parts = birthDate.split('-'); // Split the string at dashes
 	const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-
+	console.log(userPosts);
 	//
 	return (
-		<div className='border py-5 px-2'>
-			<h1 className='text-2xl font-semibold mb-2'>User Info</h1>
+		<div className=' border mb-5 py-2 px-5'>
+			<h1 className='text-2xl font-semibold mb-2'>User</h1>
 			<hr className='mb-3' />
-			<div className='py-2 flex flex-col gap-1 max-h-[70vh] overflow-scroll scrollbar-hide'>
+			<div className='relative py-2 flex flex-col gap-1 max-h-[70vh] overflow-scroll scrollbar-hide'>
 				<UserInfo
 					userData={userData}
 					formattedDate={formattedDate}
@@ -65,8 +76,8 @@ const User = ({ userId }) => {
 
 				<UserWork userData={userData} />
 
-				{/*< userData={userData} />
-				< userData={userData} /> */}
+				<UserPosts userPosts={userPosts} />
+				{/*< userData={userData} /> */}
 			</div>
 		</div>
 	);

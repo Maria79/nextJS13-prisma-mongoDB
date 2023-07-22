@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .post {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	left: 0;
+} */
+.post {
+	@apply absolute top-0 left-0 w-full;
+}
