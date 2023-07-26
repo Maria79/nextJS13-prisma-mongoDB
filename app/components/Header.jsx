@@ -30,6 +30,10 @@ const Header = () => {
 			label: 'Crud',
 			href: '/crud',
 		},
+		{
+			label: 'Liga',
+			href: '/liga',
+		},
 	];
 	return (
 		<div>
